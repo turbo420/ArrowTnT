@@ -1,4 +1,4 @@
-package me.fireworks;
+package me.ArrowTnt;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;

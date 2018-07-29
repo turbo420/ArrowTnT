@@ -1,5 +1,5 @@
-name: FireWorks
-main: me.fireworks.Main
+name: ArrowTNT
+main: me.ArrowTnt.Main
 version : 1.0
 commands:
    Score:
