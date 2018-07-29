@@ -1,0 +1,7 @@
+name: FireWorks
+main: me.fireworks.Main
+version : 1.0
+commands:
+   Score:
+      description: blank
+      usage: /<command>  
