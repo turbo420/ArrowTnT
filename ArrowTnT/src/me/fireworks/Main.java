@@ -45,7 +45,7 @@ public class Main extends JavaPlugin implements Listener{
             Trident trident = (Trident) entity;
             Entity shooter = (Entity) trident.getShooter();
             if((shooter instanceof Player)) {
-                noBlockExplosion(trident.getLocation(), 5.0F);
+                noBlockExplosion(trident.getLocation(), 7.0F);
                 trident.remove();
             }
         }
