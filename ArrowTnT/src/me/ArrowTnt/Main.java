@@ -1,6 +1,8 @@
 package me.ArrowTnt;
+import org.bukkit.EntityEffect;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -40,12 +42,13 @@ public class Main extends JavaPlugin implements Listener{
 
     @EventHandler(priority=EventPriority.HIGHEST)
     public void onProjectileHit(ProjectileHitEvent event) {
-        Entity entity = event.getEntity();
+       
+    	Entity entity = event.getEntity();
         if((entity instanceof Trident)) {
             Trident trident = (Trident) entity;
             Entity shooter = (Entity) trident.getShooter();
             if((shooter instanceof Player)) {
-                noBlockExplosion(trident.getLocation(), 7.0F);
+                noBlockExplosion(trident.getLocation(), 7.0F,shooter);
                 trident.remove();
             }
         }
@@ -55,7 +58,8 @@ public class Main extends JavaPlugin implements Listener{
             Arrow arrow = (Arrow) entity;
             Entity shooter = (Entity) arrow.getShooter();
             if((shooter instanceof Player)) {
-                noBlockExplosion(arrow.getLocation(), 5.0F);
+                noBlockExplosion(arrow.getLocation(), 10.0F,shooter);
+               
                 arrow.remove();
             }
         }
@@ -64,9 +68,13 @@ public class Main extends JavaPlugin implements Listener{
         
     }
  
-    public void noBlockExplosion(Location location, float force) {
+    public void noBlockExplosion(Location location, float force,Entity stooter) {
         clearBlocks = true;
         location.getWorld().createExplosion(location, force);
+        World world = location.getWorld();
+        Player player = (Player) stooter;
+        player.spawnParticle(Particle.FLAME,location ,400);
+        world.strikeLightning(location);
         clearBlocks = false;
     }
  
